@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.titleLabel = new System.Windows.Forms.Label();
             this.selectionLabel = new System.Windows.Forms.Label();
             this.recieptLabel = new System.Windows.Forms.Label();
@@ -50,6 +51,7 @@
             this.changeLabel = new System.Windows.Forms.Label();
             this.changeOutput = new System.Windows.Forms.Label();
             this.recieptButton = new System.Windows.Forms.Button();
+            this.newOrderButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -64,6 +66,7 @@
             this.titleLabel.TabIndex = 0;
             this.titleLabel.Text = "Sorcerer Store";
             this.titleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.titleLabel.Click += new System.EventHandler(this.titleLabel_Click);
             // 
             // selectionLabel
             // 
@@ -79,15 +82,15 @@
             // 
             // recieptLabel
             // 
+            this.recieptLabel.AutoSize = true;
             this.recieptLabel.BackColor = System.Drawing.Color.White;
             this.recieptLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.recieptLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recieptLabel.Font = new System.Drawing.Font("MS Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recieptLabel.ForeColor = System.Drawing.Color.Black;
             this.recieptLabel.Location = new System.Drawing.Point(173, 41);
             this.recieptLabel.Name = "recieptLabel";
-            this.recieptLabel.Size = new System.Drawing.Size(206, 385);
+            this.recieptLabel.Size = new System.Drawing.Size(2, 14);
             this.recieptLabel.TabIndex = 2;
-            this.recieptLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // toadFeetLabel
             // 
@@ -283,15 +286,27 @@
             this.recieptButton.Name = "recieptButton";
             this.recieptButton.Size = new System.Drawing.Size(112, 29);
             this.recieptButton.TabIndex = 21;
-            this.recieptButton.Text = "Print Reciept";
+            this.recieptButton.Text = "Print Receipt";
             this.recieptButton.UseVisualStyleBackColor = true;
             this.recieptButton.Click += new System.EventHandler(this.recieptButton_Click);
+            // 
+            // newOrderButton
+            // 
+            this.newOrderButton.Enabled = false;
+            this.newOrderButton.Location = new System.Drawing.Point(217, 366);
+            this.newOrderButton.Name = "newOrderButton";
+            this.newOrderButton.Size = new System.Drawing.Size(112, 29);
+            this.newOrderButton.TabIndex = 22;
+            this.newOrderButton.Text = "New Order";
+            this.newOrderButton.UseVisualStyleBackColor = true;
+            this.newOrderButton.Click += new System.EventHandler(this.newOrderButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 518);
+            this.ClientSize = new System.Drawing.Size(388, 518);
+            this.Controls.Add(this.newOrderButton);
             this.Controls.Add(this.recieptButton);
             this.Controls.Add(this.changeOutput);
             this.Controls.Add(this.changeLabel);
@@ -314,8 +329,9 @@
             this.Controls.Add(this.recieptLabel);
             this.Controls.Add(this.selectionLabel);
             this.Controls.Add(this.titleLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Sorcerer Store";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,6 +361,7 @@
         private System.Windows.Forms.Label changeLabel;
         private System.Windows.Forms.Label changeOutput;
         private System.Windows.Forms.Button recieptButton;
+        private System.Windows.Forms.Button newOrderButton;
     }
 }
 

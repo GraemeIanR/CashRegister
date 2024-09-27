@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+using System.Media;
 
 namespace CashRegister
 {
@@ -24,6 +26,10 @@ namespace CashRegister
         int fairyTearQuantity = 0;
         double tendered;
         double change;
+        int orderNumber = 1;
+        double taxRate = 0.13;
+        //global sound players
+        SoundPlayer print = new SoundPlayer(Properties.Resources.printSound);
 
         public Form1()
         {
@@ -39,14 +45,14 @@ namespace CashRegister
         {
             try
             {
-                //define variables
+                //convert variables
                 toadFeetQuantity = Convert.ToInt16(toadFeetInput.Text);
                 octopusEyelidQuantity = Convert.ToInt16(octopusEyelidsInput.Text);
                 fairyTearQuantity = Convert.ToInt16(fairyTearsInput.Text);
 
-                //calculate variables
+                //calculate output
                 subtotal = (toadFeetQuantity * toadFeetPrice) + (octopusEyelidQuantity * octopusEyelidPrice) + (fairyTearQuantity * fairyTearPrice);
-                tax = (subtotal * 0.13);
+                tax = (subtotal * taxRate);
                 total = (subtotal + tax);
 
                 //display values
@@ -54,7 +60,7 @@ namespace CashRegister
                 taxOutput.Text = $"{tax.ToString("C")}";
                 totalOutput.Text = $"{total.ToString("C")}";
             }
-            catch
+            catch //in case of invalid input
             {
                 subtotalOutput.Text = "ERROR";
                 taxOutput.Text = "ERROR";
@@ -69,20 +75,25 @@ namespace CashRegister
         {
             try
             {
-                //define variables
+                //convert variables
                 tendered = Convert.ToDouble(tenderedInput.Text);
 
-                change = (tendered - total);
-                changeOutput.Text = $"{change.ToString("C")}";
-                recieptButton.Enabled = true;
-
-                //if (tendered < total);
+                
+                //in case input is not enough
+                if (tendered < total) 
                 {
-                    //changeOutput.Text = "ERROR";
+                    changeOutput.Text = "ERROR";
                 }
-        
+                else
+                {
+                    //calculate output
+                    change = (tendered - total);
+                    changeOutput.Text = $"{change.ToString("C")}";
+                    recieptButton.Enabled = true;
+                }
+                
             }
-            catch
+            catch //in case of invalid input
             {
                 changeOutput.Text = "ERROR";
             }
@@ -90,11 +101,50 @@ namespace CashRegister
 
         private void recieptButton_Click(object sender, EventArgs e)
         {
-            recieptLabel.Text = $"\nRECIEPT\n";
-
-            
+            //receipt printing
+            print.Play();
+            recieptLabel.Text = $"\n        SORCERER STORE\n------------------------------";
+            Thread.Sleep(750);
+            Refresh();
+            recieptLabel.Text += $"\n Order       #{orderNumber}";
+            Thread.Sleep(750);
+            Refresh();
+            print.Play();
+            recieptLabel.Text += $"\n September 26, 2024";
+            Thread.Sleep(750);
+            Refresh();
+            recieptLabel.Text += $"\n\n\nToad Feet x{toadFeetQuantity}          @ {(toadFeetQuantity * toadFeetPrice).ToString("C")}";
+            Thread.Sleep(750);
+            Refresh();
+            print.Play();
+            recieptLabel.Text += $"\nOctopus Eyelids x{octopusEyelidQuantity}    @ {(octopusEyelidQuantity * octopusEyelidPrice).ToString("C")}";
+            Thread.Sleep(750);
+            Refresh();
+            recieptLabel.Text += $"\nFairy Tears x{fairyTearQuantity}        @ {(fairyTearQuantity * fairyTearPrice).ToString("C")}";
+            Thread.Sleep(750);
+            Refresh();
+            print.Play();
+            recieptLabel.Text += $"\n\n\nSubtotal                {subtotal.ToString("C")}";
+            Thread.Sleep(750);
+            Refresh();
+            recieptLabel.Text += $"\nTax                     {tax.ToString("C")}";
+            Thread.Sleep(750);
+            Refresh();
+            print.Play();
+            recieptLabel.Text += $"\nTotal                   {total.ToString("C")}";
+            Thread.Sleep(750);
+            Refresh();
+            recieptLabel.Text += $"\n\n\nTendered                {tendered.ToString("C")}"; 
+            Thread.Sleep(750);
+            Refresh();
+            print.Play();
+            recieptLabel.Text += $"\nChange                  {change.ToString("C")}";
+            Thread.Sleep(750);
+            Refresh();
+            recieptLabel.Text += "\n\n\n THANK YOU FOR YOUR PATRONAGE";
+            newOrderButton.Enabled = true;
         }
-
+            //to prevent calculation before values are entered
         private void tenderedInput_TextChanged(object sender, EventArgs e)
         {
             changeButton.Enabled = true;
@@ -113,6 +163,35 @@ namespace CashRegister
         private void fairyTearsInput_TextChanged(object sender, EventArgs e)
         {
             totalButton.Enabled = true;
+        }
+
+        private void newOrderButton_Click(object sender, EventArgs e)
+        {
+            //reset all buttons, textboxes, and outputs
+          
+            toadFeetInput.Text = "";
+            octopusEyelidsInput.Text = "";
+            fairyTearsInput.Text = "";
+            subtotalOutput.Text = "0";
+            taxOutput.Text = "0";
+            totalOutput.Text = "0";
+            tenderedInput.Text = "";
+            changeOutput.Text = "0";
+            recieptLabel.Text = "";
+            orderNumber++;
+
+            totalButton.Enabled = false;
+            changeButton.Enabled = false;
+            recieptButton.Enabled = false;
+            newOrderButton.Enabled = false;
+
+        }
+
+        private void titleLabel_Click(object sender, EventArgs e)
+        {
+            
+            
+
         }
     }
 }
