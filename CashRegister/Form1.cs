@@ -37,11 +37,6 @@ namespace CashRegister
             InitializeComponent();
         }
 
-        private void subtotalLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void totalButton_Click(object sender, EventArgs e)
         {
             try
@@ -60,6 +55,11 @@ namespace CashRegister
                 subtotalOutput.Text = $"{subtotal.ToString("C")}";
                 taxOutput.Text = $"{tax.ToString("C")}";
                 totalOutput.Text = $"{total.ToString("C")}";
+
+                if (toadFeetQuantity + octopusEyelidQuantity + fairyTearQuantity >= 100)
+                {
+                    acheivementLabelC.Text = "Acheivement! Hoarder:\nOrder more than 100 items";
+                }
             }
             catch //in case of invalid input
             {
@@ -103,6 +103,8 @@ namespace CashRegister
         private void recieptButton_Click(object sender, EventArgs e)
         {
             //receipt printing
+            recieptButton.Enabled = false;
+
             print.Play();
             recieptLabel.Text = $"\n        SORCERER STORE\n------------------------------";
             Thread.Sleep(750);
@@ -144,6 +146,10 @@ namespace CashRegister
             Refresh();
             recieptLabel.Text += "\n\n\n THANK YOU FOR YOUR PATRONAGE";
             newOrderButton.Enabled = true;
+            if (orderNumber == 5)
+            {
+                acheivementLabelB.Text = "Acheivement! Regular:\nMake 5 orders";
+            }
         }
             //to prevent calculation before values are entered
         private void tenderedInput_TextChanged(object sender, EventArgs e)
@@ -203,6 +209,7 @@ namespace CashRegister
             else if (titleCount == 3)
             {
                 titleLabel.Text = "Mage Market";
+                acheivementLabelA.Text = "Acheivement! Rebranding:\nChange the store's name twice";
                 titleCount = 0;
             }
 

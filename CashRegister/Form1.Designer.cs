@@ -52,6 +52,9 @@
             this.changeOutput = new System.Windows.Forms.Label();
             this.recieptButton = new System.Windows.Forms.Button();
             this.newOrderButton = new System.Windows.Forms.Button();
+            this.acheivementLabelA = new System.Windows.Forms.Label();
+            this.acheivementLabelB = new System.Windows.Forms.Label();
+            this.acheivementLabelC = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -170,7 +173,6 @@
             this.subtotalLabel.Size = new System.Drawing.Size(46, 13);
             this.subtotalLabel.TabIndex = 10;
             this.subtotalLabel.Text = "Subtotal";
-            this.subtotalLabel.Click += new System.EventHandler(this.subtotalLabel_Click);
             // 
             // subtotalOutput
             // 
@@ -301,11 +303,38 @@
             this.newOrderButton.UseVisualStyleBackColor = true;
             this.newOrderButton.Click += new System.EventHandler(this.newOrderButton_Click);
             // 
+            // acheivementLabelA
+            // 
+            this.acheivementLabelA.AutoSize = true;
+            this.acheivementLabelA.Location = new System.Drawing.Point(214, 413);
+            this.acheivementLabelA.Name = "acheivementLabelA";
+            this.acheivementLabelA.Size = new System.Drawing.Size(0, 13);
+            this.acheivementLabelA.TabIndex = 23;
+            // 
+            // acheivementLabelB
+            // 
+            this.acheivementLabelB.AutoSize = true;
+            this.acheivementLabelB.Location = new System.Drawing.Point(214, 441);
+            this.acheivementLabelB.Name = "acheivementLabelB";
+            this.acheivementLabelB.Size = new System.Drawing.Size(0, 13);
+            this.acheivementLabelB.TabIndex = 24;
+            // 
+            // acheivementLabelC
+            // 
+            this.acheivementLabelC.AutoSize = true;
+            this.acheivementLabelC.Location = new System.Drawing.Point(214, 468);
+            this.acheivementLabelC.Name = "acheivementLabelC";
+            this.acheivementLabelC.Size = new System.Drawing.Size(0, 13);
+            this.acheivementLabelC.TabIndex = 25;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(388, 518);
+            this.Controls.Add(this.acheivementLabelC);
+            this.Controls.Add(this.acheivementLabelB);
+            this.Controls.Add(this.acheivementLabelA);
             this.Controls.Add(this.newOrderButton);
             this.Controls.Add(this.recieptButton);
             this.Controls.Add(this.changeOutput);
@@ -362,6 +391,9 @@
         private System.Windows.Forms.Label changeOutput;
         private System.Windows.Forms.Button recieptButton;
         private System.Windows.Forms.Button newOrderButton;
+        private System.Windows.Forms.Label acheivementLabelA;
+        private System.Windows.Forms.Label acheivementLabelB;
+        private System.Windows.Forms.Label acheivementLabelC;
     }
 }
 
