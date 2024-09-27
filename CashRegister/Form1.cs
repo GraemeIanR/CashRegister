@@ -28,6 +28,7 @@ namespace CashRegister
         double change;
         int orderNumber = 1;
         double taxRate = 0.13;
+        int titleCount = 1;
         //global sound players
         SoundPlayer print = new SoundPlayer(Properties.Resources.printSound);
 
@@ -189,8 +190,21 @@ namespace CashRegister
 
         private void titleLabel_Click(object sender, EventArgs e)
         {
-            
-            
+            //easter egg
+            titleCount++;
+            if (titleCount == 1)
+            {
+                titleLabel.Text = "Sorcerer Store";
+            }
+            else if (titleCount == 2)
+            {
+                titleLabel.Text = "Wizard Walmart";
+            }
+            else if (titleCount == 3)
+            {
+                titleLabel.Text = "Mage Market";
+                titleCount = 0;
+            }
 
         }
     }
