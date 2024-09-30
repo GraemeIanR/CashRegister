@@ -56,6 +56,11 @@ namespace CashRegister
                 taxOutput.Text = $"{tax.ToString("C")}";
                 totalOutput.Text = $"{total.ToString("C")}";
 
+                tenderedInput.Enabled = true;
+                toadFeetInput.Enabled = false;
+                octopusEyelidsInput.Enabled = false; 
+                fairyTearsInput.Enabled = false;
+
                 if (toadFeetQuantity + octopusEyelidQuantity + fairyTearQuantity >= 100)
                 {
                     acheivementLabelC.Text = "Acheivement! Hoarder:\nOrder more than 100 items";
@@ -66,6 +71,7 @@ namespace CashRegister
                 subtotalOutput.Text = "ERROR";
                 taxOutput.Text = "ERROR";
                 totalOutput.Text = "ERROR";
+                tenderedInput.Enabled = false;
             }
 
 
@@ -78,6 +84,8 @@ namespace CashRegister
             {
                 //convert variables
                 tendered = Convert.ToDouble(tenderedInput.Text);
+
+                totalButton.Enabled = false;
 
                 
                 //in case input is not enough
@@ -104,9 +112,11 @@ namespace CashRegister
         {
             //receipt printing
             recieptButton.Enabled = false;
+            changeButton.Enabled = false;
+            tenderedInput.Enabled = false;
 
             print.Play();
-            recieptLabel.Text = $"\n        SORCERER STORE\n------------------------------";
+            recieptLabel.Text = $"\n          SORCERER STORE\n--------------------------------";
             Thread.Sleep(750);
             Refresh();
             recieptLabel.Text += $"\n Order       #{orderNumber}";
@@ -144,7 +154,7 @@ namespace CashRegister
             recieptLabel.Text += $"\nChange                  {change.ToString("C")}";
             Thread.Sleep(750);
             Refresh();
-            recieptLabel.Text += "\n\n\n THANK YOU FOR YOUR PATRONAGE";
+            recieptLabel.Text += "\n\n\n  THANK YOU FOR YOUR PATRONAGE";
             newOrderButton.Enabled = true;
             if (orderNumber == 5)
             {
@@ -191,6 +201,9 @@ namespace CashRegister
             changeButton.Enabled = false;
             recieptButton.Enabled = false;
             newOrderButton.Enabled = false;
+            toadFeetInput.Enabled = true;
+            octopusEyelidsInput.Enabled = true;
+            fairyTearsInput.Enabled = true;
 
         }
 
